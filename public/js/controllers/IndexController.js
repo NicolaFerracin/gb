@@ -1,16 +1,5 @@
 app.controller('IndexController', function($scope, $http, isAuthenticated, $location, $window, $localStorage) {
 
-
-  // watch oit for user logging out  $scope.$watch(function(){
-  $scope.$watch(function(){
-    return $localStorage.username;
-  }, function(changes, old){
-    // new current user, if undefined, call getRepos
-    if (changes === undefined) {
-      $scope.username = undefined;
-    }
-  });
-
   // check if user logged in from localStorage
   isAuthenticated.getUser().then(
     function(payload) {

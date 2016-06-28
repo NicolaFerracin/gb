@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "author": "NicolaFerracin",
-  "script" : {
-    "start" : "node server.js"
+  "script": {
+    "start": "node server.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -18,7 +18,8 @@
     "morgan": "1.6.1",
     "passport": "0.3.2",
     "passport-github2": "^0.1.10",
-    "passport-local": "1.0.0"
+    "passport-local": "1.0.0",
+    "request": "^2.72.0"
   },
   "engines": {
     "npm": "3.5.3"

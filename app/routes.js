@@ -1,6 +1,92 @@
 var User = require('./models/user');  // load the User mongoose model for passport.js authentication
+var request = require('request');
 
 module.exports = function(app, passport) {
+
+	// github api get repos
+	app.get('/api/getRepos', function(req, res){
+		var options = {
+			url: 'https://api.github.com/users/' + req.user.username + '/repos',
+			headers: {
+				'User-Agent': 'gb'
+			}
+		};
+		function callback(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				// parse the body and get needed stuff
+				jsonResult = JSON.parse(body);
+				res.json(jsonResult);
+			} else {
+				res.json({"error" : "There has been an error"})
+			}
+		}
+		request(options, callback);
+	});
+
+	// github api get issues
+	app.get('/api/getIssues', function(req, res){
+		var options = {
+			url: 'https://api.github.com/repos/' + req.user.username + '/' + req.query.repo + '/issues?state=all',
+			headers: {
+				'User-Agent': 'gb'
+			}
+		};
+		function callback(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				// parse the body and get needed stuff
+				jsonResult = JSON.parse(body);
+				res.json(jsonResult);
+			} else {
+				res.json({"error" : "There has been an error"})
+			}
+		}
+		request(options, callback);
+	});
+
+
+	// github api get labels
+	app.get('/api/getLabels', function(req, res){
+		var options = {
+			url: 'https://api.github.com/repos/' + req.user.username + '/' + req.query.repo  + '/labels',
+			headers: {
+				'User-Agent': 'gb'
+			}
+		};
+		function callback(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				// parse the body and get needed stuff
+				jsonResult = JSON.parse(body);
+				res.json(jsonResult);
+			} else {
+				res.json({"error" : "There has been an error"})
+			}
+		}
+		request(options, callback);
+	});
+
+	// github api create issue
+	app.post('/api/createIssue', function(req, res){
+		var options = {
+			method : 'POST',
+			url: 'https://api.github.com/repos/' + req.user.username + '/' + req.body.repo  + '/issues',
+			headers: {
+				'User-Agent': 'gb',
+				'Authorization' : 'token ' + req.user.accessToken,
+				'Accept': 'application/json'
+			},
+			json : req.body.form
+		};
+		function callback(error, response, body) {
+			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+				// parse the body and get needed stuff
+				jsonResult = JSON.parse(body);
+				res.json(jsonResult);
+			} else {
+				res.json({"error" : "There has been an error"})
+			}
+		}
+		request(options, callback);
+	});
 
 	// GET /auth/github
 	//   Use passport.authenticate() as route middleware to authenticate the
