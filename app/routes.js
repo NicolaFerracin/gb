@@ -67,7 +67,6 @@ module.exports = function(app, passport) {
 	// github api create issue
 	app.post('/api/createIssue', function(req, res){
 		var options = {
-			method : 'POST',
 			url: 'https://api.github.com/repos/' + req.user.username + '/' + req.body.repo  + '/issues',
 			headers: {
 				'User-Agent': 'gb',
@@ -85,7 +84,12 @@ module.exports = function(app, passport) {
 				res.json({"error" : "There has been an error"})
 			}
 		}
-		request(options, callback);
+		request.post(options, function optionalCallback(err, httpResponse, body) {
+			if (err) {
+				res.json({"error" : "There has been an error"})
+			}
+			res.json({"success" : "New issue created with success"})
+		});
 	});
 
 	// GET /auth/github
