@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <button type="button" class="btn btn-lg btn-success right" data-toggle="modal" data-target="#newIssue" id="newIssueButton">New issue</button>
+    <h1>{{repoName}}</h1>
+    <h2 ng-show="issues.length <= 0">There are no issues in this repository.</h2>
+    <div class="panels-container">
+      <div ng-repeat="issue in issues" class="panel panel-primary">
+        <a target="_blank" href="{{issue.url}}">
+          <div class="panel-heading">
+            <div>
+              <span ng-repeat="label in issue.labels" ng-style="{color : '#{{label.color}}'}" class="label-icon">
+              </div>
+              <h2>{{issue.title}}</h2>
+            </div>
+            <div class="panel-body">
+              <h5>{{issue.body}}</h5>
+            </div>
+            <div class="panel-footer">
+              <p ng-style="{'background-color': (issue.state === 'Open') ? '#dff0d8' : '#f2dede'}">{{issue.state}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="newIssue" tabindex="-1" role="dialog" aria-labelledby="newIssueModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">New issue</h4>
+            </div>
+            <div class="modal-body">
+              <form ng-submit="createIssue(issue)">
+                <div class="form-group">
+                  <label for="issueTitle">Title</label>
+                  <input type="text" class="form-control" ng-model="issue.title" placeholder="Insert title">
+                </div>
+                <div class="form-group">
+                  <label for="issueComment">Comment</label>
+                  <textarea rows="3" type="password" class="form-control" ng-model="issue.body" placeholder="Leave a comment"></textarea>
+                </div>
+                <div ng-repeat="label in selectedLabels" class="left single-label">
+                  <span ng-style="{color : '#{{label.color}}'}" class="label-icon">
+                    <span class="label-name">{{label.name}}</span>
+                    <button type="button" class="close" aria-label="Close" ng-click="removeLabel($index)"><span aria-hidden="true">&nbsp;×</span></button>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Labels
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li ng-repeat="label in labels" ng-model="issue.label" ng-click="selectLabel($index)"><a href="#">{{label.name}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button id="submitNewIssueBtn" type="submit" ng-click="createIssue(issue)" class="btn btn-success">Submit new issue</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

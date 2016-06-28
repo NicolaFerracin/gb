@@ -1,0 +1,136 @@
+/* font defintion */
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* body */
+body {
+  background-color: #eee;
+}
+
+.view {
+  margin-top: 60px;
+}
+
+#container {
+  margin-bottom: 60px;
+}
+
+/* nav bar */
+nav {
+  background: #359EFF!important;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.logo {
+  font-size: 200%;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff
+}
+
+.navbar-default .navbar-brand {
+  color: #fff
+}
+
+.navbar-brand img {
+  float: left;
+  margin-top: -5px;
+  margin-right: 5px;
+}
+
+#app {
+  margin-top: 100px;
+}
+
+/* jumbotron */
+.jumbotron {
+  background-color: #fff;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+  transform: rotate(-1deg);
+}
+
+.panels-container {
+  text-align: center;
+}
+.panel {
+  border-radius: 0px;
+  width: 200px;
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+  word-wrap: break-word;
+}
+
+.panel a {
+    text-decoration: none;
+}
+
+.panel-footer {
+  padding: 0px;
+}
+
+.panel-footer p {
+  margin-bottom: 0px;
+}
+
+/* features section */
+#features img {
+  width: 80%;
+}
+
+#features div.row {
+  margin-bottom: 60px;
+}
+
+/* new issue modal */
+#newIssueButton {
+      margin-top: 20px;
+}
+#newIssue textarea {
+  resize:vertical;
+}
+
+.dropdown {
+  clear: both;
+}
+
+.single-label {
+  padding-right: 1em;
+}
+
+.label-icon:before {
+  content: ' \25CF';
+}
+
+.label-name {
+  color: black !important;
+}
+
+/* footer */
+footer {
+  background: #fff;
+  padding-top: 10px;
+}
+
+/* common classes */
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.white {
+  color: #fff;
+}
+
+.btn {
+  border-radius: 0px;
+  text-transform: uppercase;
+}

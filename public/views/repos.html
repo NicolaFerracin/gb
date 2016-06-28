@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Repos</h1>
+    <div class="panels-container">
+      <div ng-repeat="repo in repos" class="panel panel-primary">
+        <a href="/repos/{{username}}/{{repo.name}}">
+          <div class="panel-body">
+            <h2>{{repo.name}}</h2>
+          </div>
+          <div class="panel-footer">
+            <p>{{repo.open_issues}} open issues</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
