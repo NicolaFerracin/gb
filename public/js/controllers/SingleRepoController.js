@@ -56,7 +56,6 @@ app.controller('SingleRepoController', function($scope, $http, $location) {
     form.labels = $scope.selectedLabels.map(function(item) { return item.name });
     // submit new issue through github api
     $.post('/api/createIssue', { 'repo' : $scope.repoName, 'form' : form }, function(data) {
-      console.log(data);
       if (!data.error) {
         console.log("new issue created");
         getIssues();

@@ -75,20 +75,12 @@ module.exports = function(app, passport) {
 			},
 			json : req.body.form
 		};
-		function callback(error, response, body) {
-			if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-				// parse the body and get needed stuff
-				jsonResult = JSON.parse(body);
-				res.json(jsonResult);
-			} else {
-				res.json({"error" : "There has been an error"})
-			}
-		}
 		request.post(options, function optionalCallback(err, httpResponse, body) {
 			if (err) {
 				res.json({"error" : "There has been an error"})
+			} else {
+				res.json({"success" : "New issue created with success"})
 			}
-			res.json({"success" : "New issue created with success"})
 		});
 	});
 

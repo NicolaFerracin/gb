@@ -11,8 +11,7 @@ module.exports = function(passport) {
   passport.use(new GitHubStrategy({
     clientID: '629246e9c4065fc163af',
     clientSecret: 'bdb0eda5ef3c9fbe4ef7f1f6ade9a34e24f0e297',
-    //callbackURL: 'https://thawing-woodland-11307.herokuapp.com/auth/github_oauth/callback'
-    callbackURL: 'http://localhost:8080/auth/github_oauth/callback'
+    callbackURL: 'https://thawing-woodland-11307.herokuapp.com/auth/github_oauth/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     // find a user whose email is the same as the forms email
